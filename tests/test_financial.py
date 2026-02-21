@@ -6,7 +6,7 @@ from src.utils import get_transactions
 
 
 class TestFinancialApp(unittest.TestCase):
-    
+
     def test_mask_card_number(self):
         self.assertEqual(get_mask_card_number("1234567812345678"), "1234 56** **** 5678")
         self.assertEqual(get_mask_card_number(""), "")
@@ -31,6 +31,7 @@ class TestFinancialApp(unittest.TestCase):
             self.assertIsInstance(records, list)
             if records:
                 self.assertIn('id', records[0])
+
 
 if __name__ == "__main__":
     unittest.main()

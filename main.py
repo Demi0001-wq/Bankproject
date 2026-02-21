@@ -1,8 +1,7 @@
-import sys
+import os
 
 from src.masks import get_mask_account, get_mask_card_number
-from src.processing import (filter_by_currency, filter_by_description,
-                            filter_by_status, sort_by_date)
+from src.processing import filter_by_currency, filter_by_description, filter_by_status, sort_by_date
 from src.utils import get_transactions
 
 
@@ -19,15 +18,15 @@ def main():
     while True:
         choice = input("\nПользователь: ").strip()
         if choice == '1':
-            file_path = "transactions.json"
+            file_path = os.path.join("data", "operations.json")
             print("Программа: Для обработки выбран JSON-файл.")
             break
         elif choice == '2':
-            file_path = "transactions.csv"
+            file_path = os.path.join("data", "transactions.csv")
             print("Программа: Для обработки выбран CSV-файл.")
             break
         elif choice == '3':
-            file_path = "transactions_excel.xlsx"
+            file_path = os.path.join("data", "transactions_excel.xlsx")
             print("Программа: Для обработки выбран XLSX-файл.")
             break
         else:
@@ -53,19 +52,27 @@ def main():
             print(f"Программа: Статус операции \"{status_input}\" недоступен.")
 
     # Sorting by date
-    sort_choice = input("\nПрограмма: Отсортировать операции по дате? Да/Нет\nПользователь: ").strip().lower()
+    sort_choice = input(
+        "\nПрограмма: Отсортировать операции по дате? Да/Нет\nПользователь: "
+    ).strip().lower()
     if sort_choice == 'да':
-        order_choice = input("Программа: Отсортировать по возрастанию или по убыванию?\nПользователь: ").strip().lower()
+        order_choice = input(
+            "Программа: Отсортировать по возрастанию или по убыванию?\nПользователь: "
+        ).strip().lower()
         ascending = True if 'возраст' in order_choice else False
         transactions = sort_by_date(transactions, ascending=ascending)
 
     # Filter by currency
-    currency_choice = input("\nПрограмма: Выводить только рублевые транзакции? Да/Нет\nПользователь: ").strip().lower()
+    currency_choice = input(
+        "\nПрограмма: Выводить только рублевые транзакции? Да/Нет\nПользователь: "
+    ).strip().lower()
     if currency_choice == 'да':
         transactions = filter_by_currency(transactions, "RUB")
 
     # Filter by search string
-    search_choice = input("\nПрограмма: Отфильтровать список транзакций по определенному слову в описании? Да/Нет\nПользователь: ").strip().lower()
+    search_choice = input(
+        "\nПрограмма: Отфильтровать список транзакций по определенному слову в описании? Да/Нет\nПользователь: "
+    ).strip().lower()
     if search_choice == 'да':
         search_word = input("Программа: Введите слово для поиска\nПользователь: ").strip()
         transactions = filter_by_description(transactions, search_word)

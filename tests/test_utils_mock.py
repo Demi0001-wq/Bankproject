@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import mock_open, patch
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -22,7 +22,7 @@ class TestTransactionLoading(unittest.TestCase):
         mock_read_csv.return_value = mock_df
 
         result = load_transactions_from_csv("dummy.csv")
-        
+
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0]['id'], 1)
         mock_read_csv.assert_called_once_with("dummy.csv", sep=';')
@@ -39,7 +39,7 @@ class TestTransactionLoading(unittest.TestCase):
         mock_read_excel.return_value = mock_df
 
         result = load_transactions_from_xlsx("dummy.xlsx")
-        
+
         self.assertEqual(len(result), 1)
         self.assertEqual(result[0]['id'], 2)
         mock_read_excel.assert_called_once_with("dummy.xlsx")
