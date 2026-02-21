@@ -4,9 +4,11 @@ A Python application for processing financial transactions from various data for
 
 ## Features
 
+- **Interactive CLI**: Comprehensive menu-driven interface to filter and view transactions.
 - **Multi-format Support**: Read transactions from JSON, CSV (separated by `;`), and Excel files using `pandas`.
 - **Sensitive Data Masking**: Securely mask card numbers (`XXXX XX** **** XXXX`) and account numbers (`**XXXX`).
-- **Data Filtering**: Easily filter results by transaction state.
+- **Regex Search**: Search for specific words in transaction descriptions using regular expressions.
+- **Transaction Analytics**: Count operations by category (e.g., Transfer, Opening) using `collections.Counter`.
 
 ## Installation
 
