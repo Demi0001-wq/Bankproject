@@ -1,0 +1,26 @@
+[project]
+name = "bank-project"
+version = "0.1.0"
+description = "Financial transaction processing with CSV and XLSX support"
+authors = [
+    {name = "Demi0001-wq",email = "demi@example.com"}
+]
+readme = "README.md"
+requires-python = "^3.10"
+dependencies = [
+    "pandas (>=3.0.1,<4.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)"
+]
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "pytest-cov (>=7.0.0,<8.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "isort (>=8.0.0,<9.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
