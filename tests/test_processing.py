@@ -51,23 +51,23 @@ class TestProcessing(unittest.TestCase):
     def test_filter_by_status(self):
         result = filter_by_status(self.transactions, "EXECUTED")
         self.assertEqual(len(result), 2)
-        
+
         result = filter_by_status(self.transactions, "PENDING")
         self.assertEqual(len(result), 0)
 
     def test_sort_by_date(self):
         # Ascending
         result = sort_by_date(self.transactions, ascending=True)
-        self.assertEqual(result[0]['id'], 2) # 2018
-        
+        self.assertEqual(result[0]['id'], 2)  # 2018
+
         # Descending
         result = sort_by_date(self.transactions, ascending=False)
-        self.assertEqual(result[0]['id'], 3) # 2020
+        self.assertEqual(result[0]['id'], 3)  # 2020
 
     def test_filter_by_currency(self):
         result = filter_by_currency(self.transactions, "RUB")
         self.assertEqual(len(result), 2)
-        
+
         result = filter_by_currency(self.transactions, "USD")
         self.assertEqual(len(result), 1)
 

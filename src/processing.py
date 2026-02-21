@@ -43,8 +43,10 @@ def filter_by_currency(transactions: List[Dict], currency: str = 'RUB') -> List[
     """
     Filters transactions for a specific currency.
     """
-    return [
-        tx for tx in transactions
-        if (tx.get('operationAmount') and tx['operationAmount'].get('currency', {}).get('code') == currency) or
-           (tx.get('currency_code') == currency)
-    ]
+    filtered_transactions = []
+    for tx in transactions:
+        amount = tx.get('operationAmount')
+        code = amount.get('currency', {}).get('code') if amount else None
+        if code == currency or tx.get('currency_code') == currency:
+            filtered_transactions.append(tx)
+    return filtered_transactions

@@ -1,48 +1,51 @@
-# Bank Project - Financial Transaction Processing
+# Курсовой проект: Банковские операции
 
-A Python application for processing financial transactions from various data formats (JSON, CSV, XLSX) with sensitive data masking.
+Привет! Это мой проект для работы с банковскими транзакциями. Программа помогает загружать данные из разных файлов (JSON, CSV, Excel), фильтровать их и красиво выводить в консоль. А еще она умеет маскировать номера карт и счетов, чтобы всё было безопасно.
 
-## Features
+## Что умеет программа:
 
-- **Interactive CLI**: Comprehensive menu-driven interface to filter and view transactions.
-- **Multi-format Support**: Read transactions from JSON, CSV (separated by `;`), and Excel files using `pandas`.
-- **Sensitive Data Masking**: Securely mask card numbers (`XXXX XX** **** XXXX`) and account numbers (`**XXXX`).
-- **Regex Search**: Search for specific words in transaction descriptions using regular expressions.
-- **Transaction Analytics**: Count operations by category (e.g., Transfer, Opening) using `collections.Counter`.
+*   **Работает с файлами:** Можно выбрать, откуда брать данные — из обычного JSON, таблички CSV или даже из Excel.
+*   **Умная фильтрация:** Можно найти операции по статусу (например, только успешные) или поискать конкретное слово в описании.
+*   **Сортировка:** Можно отсортировать все траты по дате — от новых к старым или наоборот.
+*   **Безопасность:** Программа сама "прячет" части номеров карт и счетов (маскировка), чтобы не светить лишнего.
+*   **Счётчик категорий:** Умеет считать, сколько раз встречалась та или иная операция.
 
-## Installation
+## Как запустить:
 
-This project uses Poetry for dependency management.
+Я использую **Poetry** для управления всеми зависимостями.
 
-1. Clone the repository and navigate to the project folder.
-2. Install dependencies:
-   ```bash
-   poetry install
-   ```
+1.  Сначала нужно установить все библиотеки:
+    ```bash
+    poetry install
+    ```
+2.  Запуск основного меню:
+    ```bash
+    python main.py
+    ```
 
-## Usage
+## Примеры использования кода:
 
-You can load and process transactions as follows:
+Если захочется использовать функции отдельно (например, загрузку или маскировку), это делается просто:
 
 ```python
 from src.utils import get_transactions
 from src.masks import get_mask_card_number
 
-# Load transactions from CSV
-transactions = get_transactions("transactions.csv")
+# Читаем данные
+data = get_transactions("data/operations.json")
 
-# Process and mask data
-for tx in transactions:
-    if 'from' in tx:
-        masked_card = get_mask_card_number(tx['from'])
-        print(f"Transaction from masked card: {masked_card}")
+# Маскируем карту
+print(get_mask_card_number("1234567812345678")) 
+# Выведет: 1234 56** **** 5678
 ```
 
-## Testing
+## Тестирование:
 
-Run tests using `pytest`:
+Чтобы проверить, что всё работает правильно, я написал тесты. Запустить их можно так:
 
 ```bash
 set PYTHONPATH=.
 pytest --cov=src
 ```
+
+Надеюсь, мой проект вам понравится!

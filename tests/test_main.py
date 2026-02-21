@@ -1,7 +1,6 @@
 import io
-import sys
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from main import main
 
@@ -19,7 +18,7 @@ class TestMain(unittest.TestCase):
         # Нет: Currency choice
         # Нет: Search choice
         mock_input.side_effect = ['1', 'EXECUTED', 'нет', 'нет', 'нет']
-        
+
         # Mocking transactions
         mock_get_transactions.return_value = [
             {
@@ -33,7 +32,7 @@ class TestMain(unittest.TestCase):
         ]
 
         main()
-        
+
         output = mock_stdout.getvalue()
         self.assertIn("Для обработки выбран JSON-файл", output)
         self.assertIn("Операции отфильтрованы по статусу \"EXECUTED\"", output)
