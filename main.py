@@ -3,6 +3,7 @@ import os
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_currency, filter_by_description, filter_by_status, sort_by_date
 from src.utils import get_transactions
+from src.widget import get_date, mask_account_card
 
 
 def main():
@@ -86,14 +87,8 @@ def main():
     print(f"Программа: Всего банковских операций в выборке: {len(transactions)}")
 
     for tx in transactions:
-        # Date formatting (assuming YYYY-MM-DDTHH:MM:SS)
         date_str = tx.get('date', 'Unknown Date')
-        if 'T' in date_str:
-            date_part = date_str.split('T')[0]
-            display_date = ".".join(reversed(date_part.split('-')))
-        else:
-            display_date = date_str
-
+        display_date = get_date(date_str)
         desc = tx.get('description', 'No Description')
 
         # Amount formatting
@@ -107,23 +102,11 @@ def main():
         from_info = tx.get('from', '')
         to_info = tx.get('to', '')
 
-        def mask_label(info):
-            info = str(info)
-            if not info or info.lower() == 'nan':
-                return ""
-            parts = info.split()
-            label = " ".join(parts[:-1])
-            number = parts[-1]
-            if "Счет" in label or "Account" in label:
-                return f"{label} {get_mask_account(number)}"
-            else:
-                return f"{label} {get_mask_card_number(number)}"
-
         print(f"\n{display_date} {desc}")
         if from_info:
-            print(f"{mask_label(from_info)} -> {mask_label(to_info)}")
+            print(f"{mask_account_card(from_info)} -> {mask_account_card(to_info)}")
         else:
-            print(f"{mask_label(to_info)}")
+            print(f"{mask_account_card(to_info)}")
         print(f"Сумма: {amount} {currency}")
 
 
