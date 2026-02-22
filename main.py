@@ -110,5 +110,9 @@ def main():
         print(f"Сумма: {amount} {currency}")
 
 
-if __name__ == "__main__":
-    main()
+    # Demonstration of restored classes (Optional/Internal)
+    # This shows they are correctly integrated into the package
+    from src import Category, Product
+    
+    if __name__ == "__main__":
+        main()
