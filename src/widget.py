@@ -5,9 +5,10 @@ def mask_account_card(info: str) -> str:
     Masks a string containing either a card or an account number.
     Identifies the type based on descriptive words (e.g., 'Счет', 'Visa').
     """
-    if not info:
+    if not info or (isinstance(info, float) and str(info) == 'nan'):
         return ""
     
+    info = str(info)
     parts = info.split()
     label = " ".join(parts[:-1])
     number = parts[-1]
