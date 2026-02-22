@@ -1,9 +1,11 @@
 import re
 from collections import Counter
 from typing import Dict, List
+from .decorators import log
 
-
+@log()
 def filter_by_description(transactions: List[Dict], search_string: str) -> List[Dict]:
+# ... (rest of the file remains same, adding @log() to each) ...
     """
     Filters transactions whose description contains the search string using regular expressions.
     """
@@ -11,6 +13,7 @@ def filter_by_description(transactions: List[Dict], search_string: str) -> List[
     return [tx for tx in transactions if tx.get('description') and pattern.search(tx['description'])]
 
 
+@log()
 def count_categories(transactions: List[Dict], categories: List[str]) -> Dict[str, int]:
     """
     Counts occurrences of specified categories in transaction descriptions.
@@ -20,6 +23,7 @@ def count_categories(transactions: List[Dict], categories: List[str]) -> Dict[st
     return {cat: counts[cat] for cat in categories}
 
 
+@log()
 def filter_by_status(transactions: List[Dict], status: str) -> List[Dict]:
     """
     Filters transactions by their state (case-insensitive).
@@ -28,6 +32,7 @@ def filter_by_status(transactions: List[Dict], status: str) -> List[Dict]:
     return [tx for tx in transactions if str(tx.get('state')).upper() == status]
 
 
+@log()
 def sort_by_date(transactions: List[Dict], ascending: bool = True) -> List[Dict]:
     """
     Sorts transactions by date.
@@ -39,6 +44,7 @@ def sort_by_date(transactions: List[Dict], ascending: bool = True) -> List[Dict]
     )
 
 
+@log()
 def filter_by_currency(transactions: List[Dict], currency: str = 'RUB') -> List[Dict]:
     """
     Filters transactions for a specific currency.
