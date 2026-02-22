@@ -108,7 +108,8 @@ def main():
         to_info = tx.get('to', '')
 
         def mask_label(info):
-            if not info:
+            info = str(info)
+            if not info or info.lower() == 'nan':
                 return ""
             parts = info.split()
             label = " ".join(parts[:-1])
