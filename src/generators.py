@@ -1,4 +1,5 @@
-from typing import List, Dict, Generator
+from typing import Dict, Generator, List
+
 
 def filter_by_currency(transactions: List[Dict], currency: str) -> Generator[Dict, None, None]:
     """
@@ -12,12 +13,14 @@ def filter_by_currency(transactions: List[Dict], currency: str) -> Generator[Dic
         elif tx.get('currency_code') == currency:
             yield tx
 
+
 def transaction_descriptions(transactions: List[Dict]) -> Generator[str, None, None]:
     """
     Generator that yields descriptions of transactions one by one.
     """
     for tx in transactions:
         yield tx.get('description', 'No Description')
+
 
 def card_number_generator(start: int, end: int) -> Generator[str, None, None]:
     """

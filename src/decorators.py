@@ -1,5 +1,5 @@
 import functools
-import datetime
+
 
 def log(filename=None):
     """
@@ -9,7 +9,6 @@ def log(filename=None):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            start_time = datetime.datetime.now()
             try:
                 result = func(*args, **kwargs)
                 log_message = f"{func.__name__} ok\n"
