@@ -1,7 +1,7 @@
 import os
 
-from src.masks import get_mask_account, get_mask_card_number
-from src.processing import filter_by_currency, filter_by_description, filter_by_status, sort_by_date
+from src.processing import (filter_by_currency, filter_by_description,
+                            filter_by_status, sort_by_date)
 from src.utils import get_transactions
 from src.widget import get_date, mask_account_card
 
@@ -110,9 +110,5 @@ def main():
         print(f"Сумма: {amount} {currency}")
 
 
-    # Demonstration of restored classes (Optional/Internal)
-    # This shows they are correctly integrated into the package
-    from src import Category, Product
-    
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()

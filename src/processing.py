@@ -1,11 +1,12 @@
 import re
 from collections import Counter
 from typing import Dict, List
+
 from .decorators import log
+
 
 @log()
 def filter_by_description(transactions: List[Dict], search_string: str) -> List[Dict]:
-# ... (rest of the file remains same, adding @log() to each) ...
     """
     Filters transactions whose description contains the search string using regular expressions.
     """
